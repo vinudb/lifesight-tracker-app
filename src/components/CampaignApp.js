@@ -33,14 +33,14 @@ class CampaignApp extends React.Component {
 
     onBudgetChange = (e) => {
         const budget = e.target.value;
-        !budget || budget.match(/^\d{1,}(\.\d{0,2})?$/) &&
+        (!budget || budget.match(/^\d{1,}(\.\d{0,2})?$/)) &&
             this.setState(() => ({ tracker: { ...this.state.tracker, budget }, error: '' }));
 
     };
 
     onImpressionsChange = (e) => {
         const impressions = e.target.value;
-        !impressions || impressions.match(/^\d{1,}?$/) &&
+        (!impressions || impressions.match(/^\d{1,}?$/)) &&
             this.setState(() => ({ tracker: { ...this.state.tracker, impressions }, error: '' }));
     };
 
@@ -106,8 +106,8 @@ class CampaignApp extends React.Component {
         } else {
             trackPromise(
                 addNewTracker(this.state.tracker).then(() => {
-                    alert('Tracker saved successfully');
-                    this.setState({ activeStep: 1, tracker: trackerDefault, channels: channelsDefault })
+                    this.setState({ activeStep: 1, tracker: trackerDefault, channels: channelsDefault }, ()=>
+                    alert('Tracker saved successfully'))
                 }).catch((e) => alert('Oops! Something went wrong. Please try later')));
         }
     }

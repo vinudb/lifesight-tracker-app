@@ -6,7 +6,7 @@ const Loading = () => {
     return (
         promiseInProgress &&
         <div className="loader">
-            <img className="loader__image" src="/loader.gif" />
+            <img className="loader__image" src="/loader.gif" alt='loading'/>
         </div>
     )
 }
